@@ -5,28 +5,29 @@ import { faHeart, faComment } from '@fortawesome/free-solid-svg-icons'
 import Button from './Button';
 
 const CardContainer = styled.div`
-    width: ${props => props.width? props.width : 'max-content'};
+    width: ${props => props.width? props.width : 'fit-content'};
     display: flex;
+    margin: 10px 5px;
     cursor: pointer;
     flex-wrap: wrap;
-    border-radius: 10px;
+    border-radius: 5px;
     border: 1px solid #ccc;
     flex-direction: column;
-    box-shadow: 1px 14px 60px -21px rgba(0,0,0,0.59);
 `;
 
 const Avatar = styled.img`
     width: 35px;
     height: 35px;
-    padding: 10px;
+    padding: ${props => props.size === "lg" ? "15px 10px" : "7px 10px"};
     border-radius: 50%;
 `;
 
 const TitleBackground = styled.img`
     width: 100%;
-    height: 150px;
+    height: fit-content;
     display: flex;
     flex: 1;
+    border-radius: 5px;
 `;
 
 const TitileContainer = styled.div`
@@ -39,11 +40,11 @@ const TitileContainer = styled.div`
 const TitleInfoContainer = styled.div`
     display: flex;
     flex-direction: column;
-    margin-bottom: 5px;
+    margin: 0 5px 5px 0;
 `;
 
 const CardTitle = styled.div`
-    font-size: 25px;
+    font-size: ${props => props.size === "lg" ? "48px" : "25px"};
     font-weight: 700;
 `;
 
@@ -103,7 +104,7 @@ const RightFooterContainer = styled.div`
 const StatsContainer = styled.div`
     display: flex;
     flex-direction: row;
-    margin: 5px 10px;
+    margin: 5px 5px 0 5px;
     align-items: center;
 `;
 
@@ -123,15 +124,16 @@ const ArticleCard = ({
     date, 
     likes_count, 
     comments_count, 
-    read_time
+    read_time,
+    size
 }) => {
     return (
     <CardContainer width={width}>
         {background_img ? <div><TitleBackground src={background_img}/></div> : null}
         <TitileContainer>
-            <div><Avatar src={avatar_img}/></div>
+            <div><Avatar src={avatar_img} size={size}/></div>
             <TitleInfoContainer>
-                <CardTitle>{card_title}</CardTitle>
+                <CardTitle size={size}>{card_title}</CardTitle>
                 <TagContainer>{tags.map(tag => <Tag key={tag} href="#">{tag}</Tag>)}</TagContainer>
                 <DateContainer href="#">{username} &middot; {date}</DateContainer>
             </TitleInfoContainer>
@@ -140,11 +142,11 @@ const ArticleCard = ({
             <LeftFooterContainer>
                 <StatsContainer>
                     <FontAwesomeIcon icon={faHeart} color="#C5C5C5"/>
-                    {likes_count}
+                    <span> &nbsp;{likes_count} </span>
                 </StatsContainer>
                 <StatsContainer>
                     <FontAwesomeIcon icon={faComment} color="#C5C5C5"/>
-                    {comments_count}
+                    <span> &nbsp;{comments_count} </span>
                 </StatsContainer>
             </LeftFooterContainer>
             <RightFooterContainer>
