@@ -1,6 +1,7 @@
 import React from 'react';
 import ArticleCard from './components/ArticleCard';
 import styled from 'styled-components';
+import Button, {GroupButton} from './components/Button';
 
 const Container = styled.div`
   display: flex;
@@ -28,6 +29,13 @@ const RightSideBard = styled.div`
   flex: 1.5;
 `;
 
+const TabContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 10px 5px;
+`;
+
 const App = () => {
   let CardsArray = [1,2,3,4,5,6,7,8,9,10];
 
@@ -36,6 +44,16 @@ const App = () => {
       <Container>
         <LeftSideBar></LeftSideBar>
         <ArticleContainer>
+          <TabContainer>
+            <Button padding="10px" bg="grey" margin="5px 5px">FEED</Button>
+            <GroupButton background="grey" out_margin="5px 5px;">
+              <Button padding="10px 20px" bg="blue">WEEK</Button>
+              <Button padding="10px 20px">MONTH</Button>
+              <Button padding="10px 20px">YEAR</Button>
+              <Button padding="10px 20px">INFINITY</Button>         
+            </GroupButton>
+            <Button padding="10px" bg="grey" color="white" margin="5px 5px">LATEST</Button>
+          </TabContainer>
           {CardsArray.map(val => 
             <ArticleCard 
               key={val}

@@ -23,7 +23,7 @@ const Avatar = styled.img`
 `;
 
 const TitleBackground = styled.img`
-    width: 100%;
+    width: 100.1%;
     height: fit-content;
     display: flex;
     flex: 1;
