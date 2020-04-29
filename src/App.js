@@ -8,7 +8,7 @@ const Container = styled.div`
   flex-wrap: wrap;
   flex-direction: row;
   flex: 6;
-  margin: 0 20px;
+  margin: 0 8%;
 `;
 
 const ArticleContainer = styled.div`
@@ -21,11 +21,13 @@ const ArticleContainer = styled.div`
 
 const LeftSideBar = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1.5;
 `;
 
 const RightSideBard = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1.5;
 `;
 
@@ -36,21 +38,44 @@ const TabContainer = styled.div`
   margin: 10px 5px;
 `;
 
+const TagContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 10px 20px;
+  height: 400px;
+  overflow-y: scroll;
+`;
+
 const App = () => {
-  let CardsArray = [1,2,3,4,5,6,7,8,9,10];
+  const CardsArray = [1,2,3,4,5,6,7,8,9,10];
+  const TabsArray = ["WEEK", "MONTH", "YEAR", "INFINITY"];
+  const Tags = ["javascript", "webev", "beginners", "react", "tutorial", "python", "discuss", "career", "css", "productivity",
+                "node", "devops", "showdev", "html", "typescript", "java", "opensource", "redux", "angular", "linux"];
 
   return (
     <div className="App">
       <Container>
-        <LeftSideBar></LeftSideBar>
+        <LeftSideBar>
+          <GroupButton background="transparent" color="black" out_margin="5px 5px 0 5px;" vertical width="100%">
+            <Button align='left' width="100%" padding="10px 25px 10px 10px" icon="FaHandsHelping" iconPosition="left">Sign In/Up</Button>
+            <Button align='left' width="100%" padding="10px 25px 10px 10px" icon="FaClipboardList" iconPosition="left">Listings</Button>
+            <Button align='left' width="100%" padding="10px 25px 10px 10px" icon="FaMicrophone" iconPosition="left">Podcasts</Button>
+            <Button align='left' width="100%" padding="10px 25px 10px 10px" icon="FaVideo" iconPosition="left">Videos</Button> 
+            <Button align='left' width="100%" padding="10px 25px 10px 10px" icon="FaTags" iconPosition="left">Tags</Button> 
+          </GroupButton >
+          <Button align='left' width="100%" padding="10px 25px 10px 42px" color="grey" bg="transparent">More...</Button>
+          <TagContainer>
+            <strong>Design Your Experience</strong>
+            <GroupButton background="transparent" color="black" out_margin="5px 5px 5px 0;" vertical width="100%">
+              {Tags.map(val => <Button key={val} width="100%" padding="10px 25px 10px 0">#{val}</Button>)}
+            </GroupButton>
+          </TagContainer>
+        </LeftSideBar>
         <ArticleContainer>
           <TabContainer>
             <Button padding="10px" bg="grey" margin="5px 5px">FEED</Button>
             <GroupButton background="grey" out_margin="5px 5px;">
-              <Button padding="10px 20px" bg="blue">WEEK</Button>
-              <Button padding="10px 20px">MONTH</Button>
-              <Button padding="10px 20px">YEAR</Button>
-              <Button padding="10px 20px">INFINITY</Button>         
+              {TabsArray.map(value => <Button key={value} padding="10px 20px">{value}</Button>)}
             </GroupButton>
             <Button padding="10px" bg="grey" color="white" margin="5px 5px">LATEST</Button>
           </TabContainer>
